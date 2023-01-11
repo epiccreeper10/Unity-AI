@@ -24,9 +24,22 @@ public class Perception : MonoBehaviour
 
             if(angle > maxAngle)
             {
-                result.Add(collider.gameObject);
+                if (tagName == "" || collider.CompareTag(tagName))
+                {
+
+                    result.Add(collider.gameObject);
+                }
             }
         }
+
+        result.Sort(CompareDistance);
         return result.ToArray();
+    }
+
+    public int CompareDistance(GameObject a, GameObject b)
+    {
+        float squaredRangeA = (a.transform.position - transform.position).sqrMagnitude;
+        float squaredRangeB = (b.transform.position - transform.position).sqrMagnitude;
+        return squaredRangeA.CompareTo(squaredRangeB);
     }
 }
