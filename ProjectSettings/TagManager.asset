@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Agent
   - Spawn
+  - Agent02
   layers:
   - Default
   - TransparentFX

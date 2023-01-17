@@ -14,10 +14,11 @@ GameObject:
   - component: {fileID: 9011769925063832083}
   - component: {fileID: 9011769925063832073}
   - component: {fileID: 9011769925063832078}
+  - component: {fileID: -603435948738686593}
   - component: {fileID: 9011769925063832079}
   m_Layer: 0
-  m_Name: Agent
-  m_TagString: Untagged
+  m_Name: Agent02
+  m_TagString: Agent02
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c0f0659dc4be668419af08c46ccec890, type: 2}
+  - {fileID: 2100000, guid: ea023532fbfed4c45828f0cb4533ba55, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -114,9 +115,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a36ce186ab3c8847b2fdef9d859746f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 4.81
+  maxSpeed: 10
   minSpeed: 5
-  maxForce: 5
+  maxForce: 10
 --- !u!114 &9011769925063832078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,9 +130,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b077e231419a7214989f48aa39eb06fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 1
+  distance: 40
   maxAngle: 1
-  tagName: Agent
+  tagName: Player
+--- !u!114 &-603435948738686593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9011769925063832081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b077e231419a7214989f48aa39eb06fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 40
+  maxAngle: 1
+  tagName: Agent02
 --- !u!114 &9011769925063832079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,9 +162,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   perception: {fileID: 9011769925063832078}
   movement: {fileID: 9011769925063832073}
-  wanderDistance: 1
-  wanderRadius: 3
-  wanderDisplacement: 5
+  flockPerception: {fileID: -603435948738686593}
+  data: {fileID: 11400000, guid: f1e74080825255b49b5891e646d1911a, type: 2}
 --- !u!1 &9011769925248362721
 GameObject:
   m_ObjectHideFlags: 0
