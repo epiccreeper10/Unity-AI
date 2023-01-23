@@ -7,6 +7,7 @@ TagManager:
   - Agent
   - Spawn
   - Agent02
+  - World
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,7 @@ TagManager:
   - Spawn
   - Water
   - UI
-  - 
+  - World
   - 
   - 
   - 

@@ -12,8 +12,8 @@ public class AgentSpawner : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) index = 0;
-        if (Input.GetKeyDown(KeyCode.Alpha2)) index = 1;
+        if (Input.GetKeyDown(KeyCode.Tab)) index = (++index % agent.Length);
+
 
         if (Input.GetMouseButton(0))
         {
@@ -26,7 +26,7 @@ public class AgentSpawner : MonoBehaviour
                 }
                 if (index == 1)
                 {
-                    Instantiate(agent[1], hitInfo.point, Quaternion.identity);
+                    Instantiate(agent[1], hitInfo.point, Quaternion.AngleAxis(Random.Range(0,360), Vector3.up));
                 }
             }
         }

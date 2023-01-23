@@ -6,6 +6,7 @@ public class AutonomousAgent : Agent
 {
     public Perception flockPerception;
     public AutonomousAgentData data;
+    public ObstacleAvoidance obstacleAvoidance;
 
     public float wanderAngle { get; set; } = 0;
 
@@ -18,6 +19,11 @@ public class AutonomousAgent : Agent
             Debug.DrawLine(transform.position, gameObject.transform.position);
         }
 
+        if (obstacleAvoidance.IsObstacleInFront())
+        {
+            Vector3 direction = obstacleAvoidance.GetOpenDirection();
+            movement.ApplyForce(Steering.CalculateSteering(this, direction) * data.obstacleWeight);
+        }
 
 
         if (gameObjects.Length > 0 && gameObjects[0] != null) 
@@ -26,7 +32,10 @@ public class AutonomousAgent : Agent
             movement.ApplyForce(Steering.Flee(this, gameObjects[0]) * data.fleeWeight);
         }
 
-        transform.position = Utilities.Wrap(transform.position, new Vector3(-20, -20, -20), new Vector3(20, 20, 20));
+        Vector3 position = transform.position;
+        position = Utilities.Wrap(position, new Vector3(-20, -20, -20), new Vector3(20, 20, 20));
+        position.y = 0;
+        transform.position = position;
 
         gameObjects = flockPerception.GetGameObjects();
         if (gameObjects.Length > 0)
