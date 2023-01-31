@@ -23,9 +23,14 @@ public class NavNodeEditor : MonoBehaviour
 	{
 		if (!Application.isEditor)
 		{
-			Destroy(this);
+			//Destroy(this);
 		}
 		SceneView.duringSceneGui += OnScene;
+	}
+
+	private void OnDisable()
+    {
+		SceneView.duringSceneGui -= OnScene;
 	}
 
 	void OnScene(SceneView scene)
@@ -94,11 +99,6 @@ public class NavNodeEditor : MonoBehaviour
 		activeCameraDirection = (activeNavNode != null) ? (scene.camera.transform.position - activeNavNode.transform.position).normalized : Vector3.zero;
 		nodeCameraDirection = (navNode != null) ? (scene.camera.transform.position - navNode.transform.position).normalized : Vector3.zero;
 	}
-
-    private void OnDisable()
-    {
-		SceneView.duringSceneGui -= OnScene;
-    }
 
     private void OnDrawGizmos()
 	{

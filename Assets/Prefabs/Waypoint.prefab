@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7195095753001806712}
   - component: {fileID: 2674511530747929569}
   - component: {fileID: 1902825878429632976}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Waypoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8819835759049550567}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1
@@ -110,5 +110,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a44153e0fd8d9b4eba5d607c07c93c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodes: []
+  neighbors: []
   radius: 1
