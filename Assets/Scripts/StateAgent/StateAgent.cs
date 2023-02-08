@@ -4,24 +4,46 @@ using UnityEngine;
 
 public class StateAgent : Agent
 {
-    [SerializeField] private Animator animator;
+    public StateMachine stateMachine = new StateMachine();
+    public GameObject[] percived;
+    public Camera mainCamera;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        mainCamera = Camera.main;
+
+        stateMachine.AddState(new IdleState(this));
+        stateMachine.AddState(new PatrolState(this));
+        stateMachine.AddState(new ChaseState(this));
+        stateMachine.AddState(new WanderState(this));
+        stateMachine.AddState(new AttackState(this));
+        stateMachine.StartState(nameof(IdleState));
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        percived = perception.GetGameObjects();
+
+        stateMachine.Update();
+
+        if (navigation.targetNode != null)
         {
-            animator.SetFloat("speed", 0.5f);
+            movement.MoveTowards(navigation.targetNode.transform.position);
         }
-        else
-        {
-            animator.SetFloat("speed", 0f);
-        }
+
+        animator.SetFloat("speed", movement.velocity.magnitude);
+    }
+
+    private void OnGUI()
+    {
+        Vector3 point = mainCamera.WorldToScreenPoint(transform.position);
+        GUI.backgroundColor = Color.black;
+        GUI.skin.label.alignment = TextAnchor.MiddleCenter;
+        Rect rect = new Rect(0, 0, 100, 20);
+        rect.x = point.x - (rect.width / 2);
+        rect.y = Screen.height - point.y - rect.height - 20;
+        GUI.Label(rect, stateMachine.currentState.name);
     }
 }

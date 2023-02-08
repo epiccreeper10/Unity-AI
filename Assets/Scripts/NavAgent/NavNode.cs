@@ -27,6 +27,21 @@ public class NavNode : MonoBehaviour
         GetComponent<SphereCollider>().radius = radius;
     }
 
+    public static NavNode[] GetNodesWithTag(string tag)
+    {
+        var gameObjects = GameObject.FindGameObjectsWithTag(tag);
+        List<NavNode> nodes = new List<NavNode>();
+        foreach (var go in gameObjects)
+        {
+            if (go.TryGetComponent<NavNode>(out NavNode navNode))
+            {
+                nodes.Add(navNode);
+            }
+        }
+
+        return nodes.ToArray();
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
